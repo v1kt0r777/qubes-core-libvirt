@@ -1,0 +1,31 @@
+From 0a2c85a680a723bb4e9163230a2c67b632bc4ec0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+Date: Fri, 20 Jul 2018 03:28:57 +0200
+Subject: [PATCH] fixup! conf: add xen specific feature: e820_host
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Organization: Invisible Things Lab
+Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+
+Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+---
+ src/conf/domain_conf.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/conf/domain_conf.c b/src/conf/domain_conf.c
+index 1454eab98b..1e50515cf3 100644
+--- a/src/conf/domain_conf.c
++++ b/src/conf/domain_conf.c
+@@ -22068,6 +22068,7 @@ virDomainDefFeaturesCheckABIStability(virDomainDefPtr src,
+         case VIR_DOMAIN_FEATURE_PRIVNET:
+         case VIR_DOMAIN_FEATURE_HYPERV:
+         case VIR_DOMAIN_FEATURE_KVM:
++        case VIR_DOMAIN_FEATURE_XEN:
+         case VIR_DOMAIN_FEATURE_PVSPINLOCK:
+         case VIR_DOMAIN_FEATURE_PMU:
+         case VIR_DOMAIN_FEATURE_VMPORT:
+-- 
+2.13.6
+

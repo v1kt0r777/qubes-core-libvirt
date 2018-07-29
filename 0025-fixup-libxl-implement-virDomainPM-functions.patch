@@ -1,0 +1,33 @@
+From bd7bffe5e5f4a9583ab3f314d1b04993047dca07 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+Date: Fri, 20 Jul 2018 03:56:03 +0200
+Subject: [PATCH] fixup! libxl: implement virDomainPM* functions
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Organization: Invisible Things Lab
+Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+
+Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+---
+ src/libxl/libxl_driver.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/libxl/libxl_driver.c b/src/libxl/libxl_driver.c
+index 299b6b3eba..c241253e21 100644
+--- a/src/libxl/libxl_driver.c
++++ b/src/libxl/libxl_driver.c
+@@ -1560,8 +1560,7 @@ libxlDomainPMWakeup(virDomainPtr dom,
+  cleanup:
+     if (vm)
+         virObjectUnlock(vm);
+-    if (event)
+-        libxlDomainEventQueue(driver, event);
++    virObjectEventStateQueue(driver->domainEventState, event);
+     return ret;
+ }
+ 
+-- 
+2.13.6
+

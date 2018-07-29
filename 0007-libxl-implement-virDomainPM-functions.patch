@@ -1,4 +1,4 @@
-From 7e20f078df578ea55e8c3a4486bef2c9638c90db Mon Sep 17 00:00:00 2001
+From 0558de72cb34962027b814c0fe1df62c117f7338 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
  <marmarek@invisiblethingslab.com>
 Date: Tue, 10 Feb 2015 05:24:04 +0100
@@ -16,10 +16,10 @@ Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
  2 files changed, 123 insertions(+), 4 deletions(-)
 
 diff --git a/src/libxl/libxl_domain.c b/src/libxl/libxl_domain.c
-index 52d21c3..97ab06b 100644
+index b800bc9f9d..650dbb7787 100644
 --- a/src/libxl/libxl_domain.c
 +++ b/src/libxl/libxl_domain.c
-@@ -524,10 +524,6 @@ libxlDomainShutdownThread(void *opaque)
+@@ -527,10 +527,6 @@ libxlDomainShutdownThread(void *opaque)
          dom_event = virDomainEventLifecycleNewFromObj(vm,
                                             VIR_DOMAIN_EVENT_PMSUSPENDED,
                                             VIR_DOMAIN_EVENT_PMSUSPENDED_MEMORY);
@@ -31,10 +31,10 @@ index 52d21c3..97ab06b 100644
      } else {
          VIR_INFO("Unhandled shutdown_reason %d", xl_reason);
 diff --git a/src/libxl/libxl_driver.c b/src/libxl/libxl_driver.c
-index 0dc62fe..6d50afc 100644
+index 72b58225bc..ac39266a27 100644
 --- a/src/libxl/libxl_driver.c
 +++ b/src/libxl/libxl_driver.c
-@@ -1444,6 +1444,127 @@ libxlDomainDestroy(virDomainPtr dom)
+@@ -1403,6 +1403,127 @@ libxlDomainDestroy(virDomainPtr dom)
      return libxlDomainDestroyFlags(dom, 0);
  }
  
@@ -162,7 +162,7 @@ index 0dc62fe..6d50afc 100644
  static char *
  libxlDomainGetOSType(virDomainPtr dom)
  {
-@@ -6496,6 +6617,8 @@ static virHypervisorDriver libxlHypervisorDriver = {
+@@ -6392,6 +6513,8 @@ static virHypervisorDriver libxlHypervisorDriver = {
      .domainReboot = libxlDomainReboot, /* 0.9.0 */
      .domainDestroy = libxlDomainDestroy, /* 0.9.0 */
      .domainDestroyFlags = libxlDomainDestroyFlags, /* 0.9.4 */
@@ -172,5 +172,5 @@ index 0dc62fe..6d50afc 100644
      .domainGetMaxMemory = libxlDomainGetMaxMemory, /* 0.9.0 */
      .domainSetMaxMemory = libxlDomainSetMaxMemory, /* 0.9.2 */
 -- 
-2.7.4
+2.13.6
 

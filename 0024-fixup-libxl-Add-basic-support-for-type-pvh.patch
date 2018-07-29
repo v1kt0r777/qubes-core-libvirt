@@ -1,0 +1,46 @@
+From 7ed4d23c604253e2f963bf4060ac15dac5ab2584 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+Date: Fri, 20 Jul 2018 03:29:20 +0200
+Subject: [PATCH] fixup! libxl: Add basic support for type=pvh
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Organization: Invisible Things Lab
+Cc: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+
+Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+---
+ src/libxl/libxl_conf.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/libxl/libxl_conf.c b/src/libxl/libxl_conf.c
+index 4439ff8079..e1fdd8922b 100644
+--- a/src/libxl/libxl_conf.c
++++ b/src/libxl/libxl_conf.c
+@@ -666,18 +666,18 @@ libxlMakeDomBuildInfo(virDomainDefPtr def,
+         }
+ #endif
+     } else if (pvh) {
+-        libxl_defbool_set(&b_info->u.pvh.apic,
++        libxl_defbool_set(&b_info->apic,
+                           def->features[VIR_DOMAIN_FEATURE_APIC] ==
+                           VIR_TRISTATE_SWITCH_ON);
+ 
+-        libxl_defbool_set(&b_info->u.pvh.nested_hvm, false);
++        libxl_defbool_set(&b_info->nested_hvm, false);
+ 
+         if (def->os.bootloader) {
+-            if (VIR_STRDUP(b_info->u.pvh.bootloader, def->os.bootloader) < 0)
++            if (VIR_STRDUP(b_info->bootloader, def->os.bootloader) < 0)
+                 return -1;
+         }
+         if (def->os.bootloaderArgs) {
+-            if (!(b_info->u.pvh.bootloader_args =
++            if (!(b_info->bootloader_args =
+                   virStringSplit(def->os.bootloaderArgs, " \t\n", 0)))
+                 return -1;
+         }
+-- 
+2.13.6
+
